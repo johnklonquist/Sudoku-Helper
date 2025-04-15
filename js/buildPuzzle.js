@@ -1,5 +1,14 @@
 function buildPuzzle() {
-  puzzle = document.getElementById("puzzle");
+  puzzle = document.getElementById('puzzle');
+
+  // use event delegation, rather than adding event listeners to each number.
+  puzzle.addEventListener('click', function (event) {
+    let target = event.target;
+    if (target.classList.contains('number')) {
+      let idTxt = target.id;
+      updatePuzzle(idTxt);
+    }
+  });
 
   //reset puzzle
   while (puzzle.children.length > 0) {
@@ -10,7 +19,7 @@ function buildPuzzle() {
   let celNum = 1;
 
   //reset puzzle log
-  document.getElementById("puzzleLog").innerHTML = "";
+  document.getElementById('puzzleLog').innerHTML = '';
 
   puzzleBuildStart = new Date();
 
@@ -24,15 +33,15 @@ function buildPuzzle() {
     */
     for (grpCol = 0; grpCol < 3; grpCol++) {
       let grpDiv = document.createElement(`div`);
-      grpDiv.className = "group";
-      grpDiv.style.position = "absolute";
-      let idTxt = "grp" + grpNum;
+      grpDiv.className = 'group';
+      grpDiv.style.position = 'absolute';
+      let idTxt = 'grp' + grpNum;
       grpDiv.id = idTxt;
 
       let divTop = grpRow * 300;
-      grpDiv.style.top = divTop + "px";
+      grpDiv.style.top = divTop + 'px';
       let divLeft = grpCol * 300;
-      grpDiv.style.left = divLeft + "px";
+      grpDiv.style.left = divLeft + 'px';
 
       for (celRow = 0; celRow < 3; celRow++) {
         let realRow = grpRow * 3 + celRow + 1;
@@ -40,18 +49,18 @@ function buildPuzzle() {
           let realCol = grpCol * 3 + celCol + 1;
 
           let celDiv = document.createElement(`div`);
-          celDiv.className = "cell";
-          celDiv.style.position = "absolute";
+          celDiv.className = 'cell';
+          celDiv.style.position = 'absolute';
           let idTxt = celNum;
           celDiv.id = idTxt;
 
           let celTop = celRow * 100;
-          celDiv.style.top = celTop + "px";
+          celDiv.style.top = celTop + 'px';
           let celLeft = celCol * 100;
-          celDiv.style.left = celLeft + "px";
+          celDiv.style.left = celLeft + 'px';
 
-          let answerDiv = document.createElement("div");
-          answerDiv.className = "unknown";
+          let answerDiv = document.createElement('div');
+          answerDiv.className = 'unknown';
           celDiv.appendChild(answerDiv);
 
           let numNum = 1;
@@ -59,31 +68,32 @@ function buildPuzzle() {
             for (numCol = 0; numCol < 3; numCol++) {
               let numDiv = document.createElement(`div`);
               numDiv.className =
-                "grp" +
+                'grp' +
                 grpNum +
-                " row" +
+                ' row' +
                 realRow +
-                " col" +
+                ' col' +
                 realCol +
-                " num" +
+                ' num' +
                 numNum +
-                " cel" +
+                ' cel' +
                 celNum +
-                " number liveOption possible";
-              numDiv.style.position = "absolute";
+                ' number liveOption possible';
+              numDiv.style.position = 'absolute';
 
-              let idTxt = "cel" + celNum + "num" + numNum;
+              let idTxt = 'cel' + celNum + 'num' + numNum;
               numDiv.id = idTxt;
               numDiv.innerHTML = numNum;
               numNum++;
               let numTop = numRow * 33;
-              numDiv.style.top = numTop + "px";
+              numDiv.style.top = numTop + 'px';
               let numLeft = numCol * 33;
-              numDiv.style.left = numLeft + "px";
+              numDiv.style.left = numLeft + 'px';
 
-              numDiv.addEventListener("click", function (event) {
-                updatePuzzle(idTxt);
-              });
+              // no longer necessary, cause of event deligation
+              // numDiv.addEventListener('click', function (event) {
+              //   updatePuzzle(idTxt);
+              // });
 
               celDiv.appendChild(numDiv);
             } //END LOOP: numRow
@@ -100,12 +110,12 @@ function buildPuzzle() {
   let puzzleBuildTime = puzzleBuildEnd - puzzleBuildStart;
 
   updatePuzzleLog(
-    "Puzzle built on " +
+    'Puzzle built on ' +
       puzzleBuildStart.toLocaleString() +
-      " in " +
+      ' in ' +
       puzzleBuildTime +
-      "ms."
+      'ms.'
   );
 
-  console.log("who still clicking");
+  console.log('who still clicking');
 }
