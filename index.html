@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Sudoku Helper</title>
+    <link rel="stylesheet" href="css/sudokuHelper.css" />
+  </head>
+  <body>
+    <h1>Sudoku Helper</h1>
+    <div id="puzzle"></div>
+    <div id="console">
+      <button onclick="buildPuzzle()">Restart</button>
+      <button onclick="undo()">Undo</button>
+      <button onclick="randomSelection()">Random</button>
+      <button onclick="solvePuzzle()">Solve</button>
+
+      <ol id="puzzleLog"></ol>
+    </div>
+
+    <script src="./js/buildPuzzle.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/undo.js"></script>
+    <script src="./js/hint.js"></script>
+    <script src="./js/updatePuzzle.js"></script>
+  </body>
+</html>
